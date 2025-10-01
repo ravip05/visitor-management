@@ -102,12 +102,12 @@ async function apiFetch(path, options = {}) {
 
     if (!res.ok) {
       console.warn("[vms] apiFetch non-ok", res.status, data);
-      if (res.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setTimeout(() => (window.location = "/login"), 200);
-        throw new Error("Unauthorized");
-      }
+ //     if (res.status === 401) {
+    //    localStorage.removeItem("token");
+    //    localStorage.removeItem("user");
+   //     setTimeout(() => (window.location = "/login"), 200);
+    //    throw new Error("Unauthorized");
+  //    }
 
       const msg = data && data.error ? data.error : typeof data === "string" ? data : "Request failed";
       const err = new Error(msg);
