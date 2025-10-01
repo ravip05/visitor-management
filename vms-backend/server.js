@@ -330,6 +330,16 @@ app.get('/visitors', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'internal error' });
   }
 });
+// Clear all visitors (dangerous — use only for demo/testing)
+app.delete("/visitors", authMiddleware, (req, res) => {
+  db.run("DELETE FROM visitors", [], (err) => {
+    if (err) {
+      console.error("Error clearing visitors:", err);
+      return res.status(500).json({ error: "Failed to clear visitors" });
+    }
+    res.json({ success: true, message: "All visitors cleared" });
+  });
+});
 
 /* -----------------------------
   REPORTS (unchanged)
